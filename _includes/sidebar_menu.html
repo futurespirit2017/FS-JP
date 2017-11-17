@@ -1,0 +1,63 @@
+<!--Sidebar Menu-->
+<div class="sidebar-menu">
+    <div class="top">
+        MENU <span class="menu-btn"> <i class="icon-cancel"></i>  </span>
+    </div>
+    <ul class="mainmenu">
+        <li class="parent"><a href="#"> サービス</a>
+            <ul>
+                {% for front_page in site.pages %}
+                {% if front_page.categories == 'package-plan' %}
+                {% if front_page.tag != 'related' %}
+                <li {% if front_page.url == page.url %} class="active" {% endif %}>
+                    <a href="{{ front_page.permalink | prepend: site.baseurl }}" class="item">{{ front_page.title }} </a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="parent"><a href="#"> 関連サービス</a>
+            <ul>
+                {% for front_page in site.pages %}
+                {% if front_page.categories == 'package-plan' %}
+                {% if front_page.tag == 'related' %}
+                <li {% if front_page.url == page.url %} class="active" {% endif %}>
+                    <a href="{{ front_page.permalink | prepend: site.baseurl }}" class="item">{{ front_page.title }} </a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="parent"><a href="#"> サポート</a>
+            <ul>
+                            {% assign sorted_pages = (site.pages | sort: 'priority') %}
+                            {% for front_page in sorted_pages %}
+                            {% if front_page.categories == 'faq' and front_page.tag != 'faq_cate_detail'%}
+                            <li {% if front_page.url == page.url %} class="active" {% endif %}>
+                                <a href="{{ front_page.url | prepend: site.baseurl }}" class="item">{{ front_page.title }} </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+
+              </ul>
+        </li>
+        <li class="parent"><a href="#"> 会社情報</a>
+            <ul class="menu">
+                            {% assign sorted_pages = (site.pages | sort: 'priority') %}
+                            {% for front_page in sorted_pages %}
+                            {% if front_page.categories == 'company'  %}
+                            <li {% if front_page.url == page.url %} class="active" {% endif %}>
+                                <a href="{{ front_page.url | prepend: site.baseurl }}" class="item">{{ front_page.title }} </a>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+        </li>
+    </ul>
+    <div class="language">
+        <a href="http://future-s.com.my/" class="btn btn-grey-lighter"> English </a>
+    </div>
+</div>
+<!--End Sidebar Menu-->
